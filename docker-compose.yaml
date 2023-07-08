@@ -1,0 +1,38 @@
+version: '3.0'
+
+volumes:
+  etc_pihole-unbound:
+  etc_pihole_dnsmasq-unbound:
+
+services:
+  pihole:
+    container_name: pihole
+    image: cameronaw13/pihole-unbound:latest
+    hostname: ${HOSTNAME}
+    domainname: ${DOMAIN_NAME}
+    ports:
+      - 443:443/tcp
+      - 53:53/tcp
+      - 53:53/udp
+      #- 67:67/udp # Uncomment to enable DHCP
+      - ${PIHOLE_WEBPORT:-80}:80/tcp # Adjust PIHOLE_WEBPORT if port 80 is in use
+      #- 5335:5335/tcp # Uncomment to enable unbound access on local server
+    environment:
+      - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
+      - TZ=${TZ:-UTC}
+      - WEBPASSWORD=${WEBPASSWORD}
+      #- WEBPASSWORD_FILE=${WEBPASSWORD_FILE} # Uncomment to use file for password
+      - WEBTHEME=default-dark
+      #- REV_SERVER=${REV_SERVER:-false} # Uncomment to enable DHCP
+      #- REV_SERVER_TARGET=${REV_SERVER_TARGET}
+      #- REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
+      #- REV_SERVER_CIDR=${REV_SERVER_CIDR}
+      - PIHOLE_DNS_=127.0.0.1#5335
+      - DNSSEC="true"
+      - DNSMASQ_LISTENING=single
+    volumes:
+      - etc_pihole-unbound:/etc/pihole:rw
+      - etc_pihole_dnsmasq-unbound:/etc/dnsmasq.d:rw
+    #cap_add:
+      #- NET_ADMIN # Required if using DHCP
+    restart: unless-stopped
