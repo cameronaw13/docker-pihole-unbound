@@ -13,14 +13,14 @@ on:
       - '.github/workflows/auto-merge.yml'
 
 env:
-    # Use docker.io for Docker Hub if empty
+    # build registry
     REGISTRY: docker.io
     # github.repository as <account>/<repo>
     IMAGE_NAME: cameronaw13/pihole-unbound
-
+    # act testing
     #DOCKER_METADATA_OUTPUT_TAGS: |-
-    #  docker.io/cameronaw13/pihole-unbound:main
-    #  docker.io/cameronaw13/pihole-unbound:dependabot-docker-pihole-pihole-2023.02.2
+    #  docker.io/cameronaw13/pihole-unbound:master
+    #  docker.io/cameronaw13/pihole-unbound:dependabot-docker-pihole-pihole-2023.05.2
 
 jobs:
   build:
@@ -60,7 +60,6 @@ jobs:
       
       - name: Format release tags
         id: format
-        #run: echo branch=$(echo "${{ env.DOCKER_METADATA_OUTPUT_TAGS }}" | sed -n '1p' | sed -r "s/(.*:)(.*)/\2/g" | sed -r "s/dependabot-docker-pihole-pihole-(.*)/\1/g") >> $GITHUB_OUTPUT
         run: >-
             branch="";
             while read -r line;
