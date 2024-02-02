@@ -1,3 +1,5 @@
+Feb 1 2024 Update: Will be recreating this repo/image as a direct fork of chriscrowe's repo instead.
+
 Pi-hole + Unbound on Docker - 1 container w/ autobuilds.
 
 Forked from [chriscrowe's pihole-unbound repo](https://github.com/chriscrowe/docker-pihole-unbound)
