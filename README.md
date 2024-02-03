@@ -1,4 +1,4 @@
-Feb 1 2024 Update: Will be recreating this repo/image as a direct fork of chriscrowe's repo instead.
+### Feb 1 2024 Update: I recreated this repo with a couple of updates & changes, mainly to directly fork chriscrowe's repo instead of maintaining a separate one. This repo will be made read-only while a link to the new repo [will be listed here.](https://github.com/cameronaw13/pihole-unbound-container)
 
 Pi-hole + Unbound on Docker - 1 container w/ autobuilds.
 
